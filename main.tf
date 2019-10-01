@@ -46,6 +46,16 @@ resource "aws_security_group" "instance" {
   }
 }
 
+# added to cause a policy failure
+resource "aws_security_group_rule" "allow_all_ssh" {
+  type = "ingress"
+  from_port = 22
+  to_port = 22
+  protocol = "tcp"
+  cidr_blocks = [ "0.0.0.0/0" ]
+  security_group_id = "${aws_security_group.instance.security_group_id}"
+}
+
 resource "aws_autoscaling_group" "example" {
   launch_configuration = "${aws_launch_configuration.example.id}"
   availability_zones = "${data.aws_availability_zones.all.names}"
