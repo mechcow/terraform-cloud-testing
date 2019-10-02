@@ -7,5 +7,5 @@ provider "aws" {
 module "webserver_cluster" {
   source  = "app.terraform.io/planetjoel/webserver_cluster/planetjoel"
   version = "0.0.1"
-  num_servers = 5
+  num_servers = 11
 }
